@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+  
+
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Small boxes (Stat box) -->
+            <div class="row">
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3>@Html.Action("getUsers","Users")</h3>
+
+                            <p>Người dùng</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-user"></i>
+                        </div>
+                        
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3>@Html.Action("getMember","Member")</h3>
+
+                            <p>Admin</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-user-circle-o"></i>
+                        </div>
+                       
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <h3>@Html.Action("getNews", "News")</h3>
+
+                            <p>Tin tức</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-newspaper-o"></i>
+                        </div>
+                       
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h3>@Html.Action("getProduct","Product")</h3>
+
+                            <p>Sản phẩm</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-product-hunt"></i>
+                        </div>
+                       
+                    </div>
+                </div>
+                <!-- ./col -->
+            </div>
+            <!-- /.row -->
+            <!-- Main row -->
+          
+            <!-- /.row (main row) -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

@@ -1,0 +1,114 @@
+﻿@model WebsiteBanHang.Context.Product
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#addtocart").click(function () {
+            var model = {};
+            //lấy id sản phẩm
+            model.ID = @Model.ID;
+            // lấy số lượng đặt hàng
+            model.Quantity = $("#ipQuantity").val();
+            debugger;
+           $.ajax({
+    type: "POST",
+    url: '@Url.Action("AddToCart","Cart")',
+    data: JSON.stringify(model),
+    dataType: "json",
+    contentType: "application/json; charset=utf-8",
+    success: function () {
+        Swal.fire({
+            title: 'Thành công!',
+            text: 'Thêm giỏ hàng thành công!',
+            icon: 'success',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Đóng'
+        }).then(function () {
+            $('#CartCount').text(@Session["count"] + 1);
+        });
+    }
+    ,error: function () {
+        Swal.fire({
+            title: 'Lỗi!',
+            text: 'Lỗi trong khi thêm vào giỏ hàng!',
+            icon: 'error',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Đóng'
+        });
+    }
+});
+return false;
+
+        });
+    });
+</script>
+<section class="py-3 bg-light">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="~/Home/">Home</a></li>
+            <li class="breadcrumb-item"><a href="#"></a></li>
+        </ol>
+    </div>
+</section>
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content bg-white padding-y">
+    <div class="container" style="margin-bottom:150px">
+
+        <!-- ============================ ITEM DETAIL ======================== -->
+        <div class="row">
+            <aside class="col-md-6">
+                <div class="card">
+                    <article class="gallery-wrap">
+                        <div class="img-big-wrap">
+                            <div> <a href="#"><img src="~/Content/images/items/@Model.Avatar"></a></div>
+                        </div> <!-- slider-product.// -->
+
+                    </article> <!-- gallery-wrap .end// -->
+                </div> <!-- card.// -->
+            </aside>
+            <main class="col-md-6">
+                <article class="product-info-aside">
+
+                    <h2 class="title mt-3">@Model.Name</h2>
+
+                    
+
+                    <div class="mb-3">
+                        <var class="price h4">@string.Format("{0:N0}", Model.Price)₫</var>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h5 class="title-description">Mô tả</h5>
+                            @Model.FullDescription
+                        </div>
+                    </div>
+
+                    <div class="form-row  mt-4">
+                        <div class="form-group col-md flex-grow-0">
+                            <div class="input-group mb-3 input-spinner">
+                                <input type="text" id="ipQuantity" class="form-control" value="1">
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md">
+                            <a href="#" id="addtocart" class="btn  btn-primary">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="text" h>Thêm vào giỏ hàng</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </article>
+            </main>
+        </div>
+    </div>
+</section>
+
+

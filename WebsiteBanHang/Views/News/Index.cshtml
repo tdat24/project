@@ -1,0 +1,55 @@
+﻿@model IEnumerable<WebsiteBanHang.Context.News>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    /* CSS để định dạng row và cột */
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .column {
+        flex: 1 0 calc(50% - 10px); /* 50% width để hiển thị 2 cột trên mỗi row */
+        margin: 5px;
+        padding: 10px;
+        background-color: lightgray;
+        border: 1px solid black;
+    }
+</style>
+
+
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div style="width:650px;margin:20px">
+                    <div class="card card-category item">
+                        <div class="card-body">
+
+                            <img src="~/Content/images/items/@item.Avatar" style="width:600px"/>
+
+                            <div><br />
+                                <a href="@Url.Action("Detail","News",new{area = "",ID = item.ID})"><h3>@item.Title</h3></a>
+
+                                
+                                <h6>Người đăng: @item.Author</h6>
+                                <h6>Ngày đăng: @item.CreatedDate</h6>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+
+    </div>
+
+
+
+
+

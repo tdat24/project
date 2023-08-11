@@ -1,0 +1,138 @@
+﻿@model IEnumerable<WebsiteBanHang.Context.Category>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    @using (Html.BeginForm("Index", "Category", FormMethod.Get))
+    {<div class="container">
+            <div class="search">
+                <style>
+                    p {
+                        margin-bottom: 10px;
+                    }
+
+                    input[type="text"] {
+                        padding: 5px;
+                        border: 1px solid #ccc;
+                        border-radius: 4px;
+                        font-size: 14px;
+                    }
+
+                    input[type="submit"] {
+                        padding: 5px 10px;
+                        background-color: #4CAF50;
+                        color: white;
+                        border: none;
+                        border-radius: 4px;
+                        cursor: pointer;
+                        font-size: 14px;
+                    }
+                </style>
+                <style>
+                    .action-links {
+                        display: inline-block;
+                    }
+
+                        .action-links a {
+                            color: #333;
+                            text-decoration: none;
+                            padding: 5px 10px;
+                            border-radius: 3px;
+                            background-color: #eee;
+                            margin-right: 5px;
+                        }
+
+                            .action-links a:hover {
+                                background-color: #ccc;
+                            }
+                </style>
+                <style>
+                    .table {
+                        border-collapse: collapse;
+                        width: 100%;
+                    }
+
+                        .table th,
+                        .table td {
+                            border: 1px solid #ddd;
+                            padding: 8px;
+                        }
+
+                        .table th {
+                            background-color: #f2f2f2;
+                            font-weight: bold;
+                        }
+
+                        .table .action-links {
+                            white-space: nowrap;
+                        }
+
+                            .table .action-links a {
+                                color: #333;
+                                text-decoration: none;
+                                padding: 5px 10px;
+                                border-radius: 3px;
+                                background-color: #eee;
+                                margin-right: 5px;
+                            }
+
+                                .table .action-links a:hover {
+                                    background-color: #ccc;
+                                }
+                </style>
+                <p>
+                    Tìm tên sản phẩm: <input type="text" name="SearchString" value="@ViewBag.CurrentFilter" />
+                    <input type="submit" value="Tìm kiếm" />
+                </p>
+
+            </div>
+            <div class="add-new">
+                <p class="add-new-link">
+                    @Html.ActionLink("Thêm mới", "Create")
+                </p>
+            </div>
+        </div>
+    }
+    <br />
+    <br />
+    <table class="table">
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                 Tên sản phẩm
+            </th>
+            <th>    </th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+
+                <td class="text-center">
+                    @Html.ActionLink("Sửa", "Edit", new { ID = item.ID }, new { @class = "edit-link btn btn-primary" })
+
+                    @Html.ActionLink("Xóa", "Delete", new { ID = item.ID }, new { @class = "delete-link btn btn-danger" })
+
+                </td>
+            </tr>
+
+        }
+    </table>
+
+
+
+</div>
+
